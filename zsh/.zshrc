@@ -10,6 +10,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -77,7 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aws cp dotenv git docker docker-compose node nvm npm sudo zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(aws cp git docker docker-compose node nvm npm sudo zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -119,3 +120,11 @@ if [ -f '/home/adrian/google-cloud-sdk/path.zsh.inc' ]; then . '/home/adrian/goo
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/adrian/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/adrian/google-cloud-sdk/completion.zsh.inc'; fi
+
+# pnpm
+export PNPM_HOME="/home/adrian/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
